@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FiveCity | بوابة العصابة</title>
+<meta name="theme-color" content="#a60018">
+<style>
+:root{--bg:#090a0e;--panel:#13151c;--panel2:#1a1d26;--red:#c10b2b;--red2:#ff2448;--text:#f4f4f6;--muted:#a6a9b5;--line:#292d38;--green:#31c48d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#24101a 0,#090a0e 48%);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:var(--text);min-height:100vh}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:11px 15px;font-weight:800;background:var(--red);color:white}button:hover{filter:brightness(1.12)}button.secondary{background:#292d38}button.danger{background:#6f1424}button.green{background:#087f5b}.hidden{display:none!important}
+header{position:sticky;top:0;z-index:5;background:#0b0c11eF;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:950;font-size:17px}.logo{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#ff2448,#760016);font-weight:1000;box-shadow:0 0 25px #c10b2b55}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}
+main{max-width:1050px;margin:auto;padding:20px 14px 70px}.hero{padding:28px 20px;border:1px solid #4c1b29;border-radius:22px;background:linear-gradient(125deg,#35101c,#15151d 60%,#101117);position:relative;overflow:hidden}.hero:after{content:"V";position:absolute;left:12px;bottom:-75px;font-size:230px;font-weight:1000;color:#ffffff06;pointer-events:none}.eyebrow{color:#ff7187;font-size:12px;font-weight:900;letter-spacing:2px}.hero h1{font-size:clamp(27px,6vw,44px);margin:9px 0}.hero p{color:#c6c6cf;max-width:600px;line-height:1.8}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px;margin-top:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:17px}.card h3{margin:0 0 10px}.muted{color:var(--muted);font-size:13px;line-height:1.7}.stat{font-size:26px;font-weight:950}.section{margin-top:25px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.section-title h2{margin:0;font-size:20px}.field{display:grid;gap:6px;margin:11px 0}.field label{color:#c7c8d0;font-size:13px}.field input,.field textarea,.field select{width:100%;background:#0c0e13;border:1px solid #343845;border-radius:11px;padding:12px;color:white;outline:none}.field input:focus,.field textarea:focus{border-color:var(--red2)}.field textarea{min-height:85px;resize:vertical}.tabs{display:flex;gap:7px;overflow:auto;margin:17px 0}.tab{white-space:nowrap;background:#1b1d25;color:#c8cad3}.tab.active{background:var(--red);color:#fff}.notice{padding:12px 14px;background:#20151a;border:1px solid #542331;border-radius:12px;color:#ffd8df;font-size:13px;line-height:1.7;margin:12px 0}.item{padding:13px;background:#0e1016;border:1px solid var(--line);border-radius:12px;margin:8px 0}.item-top{display:flex;justify-content:space-between;gap:8px;align-items:center}.badge{display:inline-block;padding:4px 8px;border-radius:99px;background:#30212a;color:#ffb7c4;font-size:11px;font-weight:800}.messages{height:300px;overflow:auto;padding:10px;background:#0b0d12;border:1px solid var(--line);border-radius:13px}.msg{padding:9px 11px;background:#191c24;border-radius:12px;margin:7px 0;overflow-wrap:anywhere}.msg strong{color:#ff8498}.msg time{font-size:10px;color:#8f93a0;margin-right:7px}.msg p{margin:5px 0 0;white-space:pre-wrap}.footer{text-align:center;color:#777d8a;font-size:11px;margin-top:30px}.error{color:#ff8498}.success{color:#63e6be}.small{font-size:11px}.divider{height:1px;background:var(--line);margin:14px 0}
+@media(min-width:700px){main{padding-top:28px}.hero{padding:40px}.messages{height:380px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">5C</div><div>FIVECITY <small>GANG PORTAL</small></div></div>
+ <div class="row"><span id="who" class="muted"></span><button id="logoutBtn" class="secondary hidden">خروج</button></div>
+</header>
+<main>
+<section class="hero">
+ <div class="eyebrow">FIVECITY ROLEPLAY • COMMUNITY HUB</div>
+ <h1>بوابة العصابة <span style="color:#ff3656">FiveCity</span></h1>
+ <p>مكان واحد لقوانين العصابة، طلبات الانضمام، إعلانات الإدارة، ودردشة الأعضاء. منظّمة، سريعة، ومناسبة للموبايل.</p>
+ <div class="row"><button onclick="showTab('apply')">قدّم للانضمام</button><button class="secondary" onclick="showTab('rules')">اقرأ القوانين</button></div>
+</section>
+<div id="status" class="notice">اربط الموقع بخدمة Firebase من الإعدادات الموجودة في الكود حتى تعمل الحسابات والبيانات أونلاين.</div>
+
+<section id="authArea" class="section grid">
+ <div class="card"><h3>تسجيل الدخول</h3><div class="field"><label>البريد الإلكتروني</label><input id="loginEmail" type="email" autocomplete="email" placeholder="name@example.com"></div><div class="field"><label>كلمة المرور</label><input id="loginPass" type="password" autocomplete="current-password"></div><button id="loginBtn">دخول</button></div>
+ <div class="card"><h3>إنشاء حساب عضو</h3><div class="field"><label>اسم اللاعب / الاسم داخل العصابة</label><input id="regName" maxlength="30" placeholder="اسمك"></div><div class="field"><label>البريد الإلكتروني</label><input id="regEmail" type="email" autocomplete="email" placeholder="name@example.com"></div><div class="field"><label>كلمة المرور (6 أحرف على الأقل)</label><input id="regPass" type="password" autocomplete="new-password"></div><button id="registerBtn">إنشاء الحساب</button><p class="muted">إنشاء الحساب لا يعني قبول طلب الانضمام تلقائيًا.</p></div>
+</section>
+
+<div id="appArea" class="hidden">
+ <div class="grid">
+  <div class="card"><div class="muted">الأعضاء المسجلون</div><div class="stat" id="statMembers">—</div></div>
+  <div class="card"><div class="muted">طلبات الانضمام المعلّقة</div><div class="stat" id="statApps">—</div></div>
+  <div class="card"><div class="muted">رسائل الدردشة</div><div class="stat" id="statMsgs">—</div></div>
+ </div>
+ <nav class="tabs">
+  <button class="tab active" data-tab="chat" onclick="showTab('chat')">الدردشة</button>
+  <button class="tab" data-tab="apply" onclick="showTab('apply')">طلب انضمام</button>
+  <button class="tab" data-tab="rules" onclick="showTab('rules')">القوانين</button>
+  <button class="tab" data-tab="announcements" onclick="showTab('announcements')">الإعلانات</button>
+  <button class="tab hidden" id="adminTab" data-tab="admin" onclick="showTab('admin')">لوحة المالك</button>
+ </nav>
+ <section id="panel-chat" class="tabPanel">
+  <div class="card"><div class="section-title"><h2>غرفة الأعضاء</h2><span class="badge">LIVE CHAT</span></div><div id="messages" class="messages"></div><div class="field"><label>رسالتك</label><textarea id="messageInput" maxlength="1000" placeholder="اكتب رسالة محترمة..."></textarea></div><div class="row"><button id="sendBtn">إرسال الرسالة</button><span class="muted small">لا ترسل بيانات شخصية أو كلمات مرور.</span></div></div>
+ </section>
+ <section id="panel-apply" class="tabPanel hidden">
+  <div class="card"><h2>طلب الانضمام للعصابة</h2><p class="muted">اكتب بياناتك داخل اللعبة فقط. الإدارة ستراجع طلبك.</p>
+   <div class="field"><label>اسمك داخل FiveCity</label><input id="appPlayer" maxlength="50" placeholder="اسم الشخصية"></div>
+   <div class="field"><label>العمر داخل الرول بلاي / العمر المطلوب حسب قوانين العصابة</label><input id="appAge" maxlength="30" placeholder="اكتب الإجابة"></div>
+   <div class="field"><label>خبرتك في الرول بلاي</label><textarea id="appExp" maxlength="1000" placeholder="احكيلنا عن خبرتك"></textarea></div>
+   <div class="field"><label>ليه عايز تنضم؟</label><textarea id="appWhy" maxlength="1000" placeholder="سبب التقديم"></textarea></div>
+   <button id="applyBtn">إرسال الطلب</button><div id="myApplication" class="muted"></div>
+  </div>
+ </section>
+ <section id="panel-rules" class="tabPanel hidden"><div class="card"><h2>قوانين العصابة</h2><div id="rulesText" style="line-height:2;white-space:pre-wrap">1. احترام جميع الأعضاء والإدارة.\n2. ممنوع السب أو التنمر أو نشر معلومات شخصية.\n3. الالتزام بقوانين سيرفر FiveCity.\n4. ممنوع انتحال رتبة أو صفة إدارية.\n5. ممنوع نشر روابط مشبوهة أو إعلانات بدون إذن.\n6. قرارات الإدارة تُناقش باحترام داخل القنوات المناسبة.</div><p class="muted">المالك يستطيع تعديل القوانين من لوحة المالك بعد إعداد قاعدة البيانات.</p></div></section>
+ <section id="panel-announcements" class="tabPanel hidden"><div class="card"><h2>إعلانات الإدارة</h2><div id="announcementsList" class="muted">لا توجد إعلانات منشورة حاليًا.</div><div id="announceForm" class="hidden"><div class="divider"></div><div class="field"><label>إعلان جديد</label><textarea id="announcementInput" maxlength="1500" placeholder="اكتب الإعلان..."></textarea></div><button id="postAnnouncementBtn">نشر الإعلان</button></div></div></section>
+ <section id="panel-admin" class="tabPanel hidden">
+  <div class="card"><h2>لوحة المالك</h2><div class="notice">حساب المالك هو البريد المحدد في إعدادات الموقع. لا تشارك حسابه أو كلمة مروره.</div>
+   <div class="section"><h3>طلبات الانضمام</h3><div id="applicationsList" class="muted">تحميل الطلبات...</div></div>
+   <div class="section"><h3>إدارة الأعضاء والرتب</h3><div id="membersList" class="muted">تحميل الأعضاء...</div></div>
+   <div class="section"><h3>نشر إعلان</h3><p class="muted">يمكنك أيضًا النشر من تبويب الإعلانات.</p></div>
+  </div>
+ </section>
+</div>
+<div class="footer">FIVECITY GANG PORTAL • نسخة أولية قابلة للتطوير • لا تستخدم بيانات حساسة</div>
+</main>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import { getFirestore, collection, doc, setDoc, addDoc, getDoc, getDocs, query, orderBy, limit, onSnapshot, serverTimestamp, updateDoc, where } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+/* ==== إعداد مرة واحدة: ضع بيانات Firebase هنا، وحدد بريد المالك ==== */
+const firebaseConfig = {
+  apiKey: "AIzaSyCl34cW3MHbOQRhARTbbAClFg2IVEmc1_Y",
+  authDomain: "fivecity-gang.firebaseapp.com",
+  projectId: "fivecity-gang",
+  storageBucket: "fivecity-gang.firebasestorage.app",
+  messagingSenderId: "487000599809",
+  appId: "1:487000599809:web:0d1f7ec4aa6840888b7f00",
+  measurementId: "G-4M4M66K2ZR"
+};
+const OWNER_EMAIL = "alirakha526@gmail.com";
+const configured = !Object.values(firebaseConfig).some(v => String(v).startsWith("PASTE_")) && !OWNER_EMAIL.includes("PUT_YOUR");
+const $ = id => document.getElementById(id);
+let auth, db, currentUser=null, currentProfile=null, unsubMessages=null, unsubStats=null;
+window.showTab = function(name){
+ document.querySelectorAll('.tabPanel').forEach(el=>el.classList.add('hidden'));
+ const panel=$('panel-'+name); if(panel) panel.classList.remove('hidden');
+ document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active',el.dataset.tab===name));
+};
+function status(msg, type=''){ $('status').textContent=msg; $('status').className='notice '+type; }
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function dateText(ts){try{return ts?.toDate?ts.toDate().toLocaleString('ar-EG'):'الآن'}catch{return 'الآن'}}
+function owner(){return !!currentUser && currentUser.email?.toLowerCase()===OWNER_EMAIL.toLowerCase();}
+function safeError(e){const m=e?.code||e?.message||'خطأ غير معروف';const map={'auth/invalid-credential':'البريد أو كلمة المرور غير صحيحة.','auth/email-already-in-use':'البريد مستخدم بالفعل.','auth/weak-password':'اختار كلمة مرور أقوى (6 أحرف على الأقل).','auth/invalid-email':'اكتب بريدًا إلكترونيًا صحيحًا.','permission-denied':'الصلاحيات تمنع العملية. راجع قواعد Firestore.','auth/network-request-failed':'تأكد من اتصال الإنترنت.'};return map[m]||m;}
+if(!configured){status('الموقع جاهز من ناحية الواجهة، لكنه لن يتصل بالإنترنت حتى تضيف بيانات Firebase وبريد المالك في الكود. اتبع خطوات الإعداد التي مع الملف.');$('loginBtn').disabled=true;$('registerBtn').disabled=true;$('sendBtn').disabled=true;$('applyBtn').disabled=true;}
+else {
+ try {const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app);
+ $('loginBtn').onclick=async()=>{try{await signInWithEmailAndPassword(auth,$('loginEmail').value.trim(),$('loginPass').value)}catch(e){status(safeError(e),'error')}};
+ $('registerBtn').onclick=async()=>{try{const name=$('regName').value.trim(),email=$('regEmail').value.trim(),pass=$('regPass').value;if(!name)throw Error('اكتب اسم اللاعب أولًا.');const cred=await createUserWithEmailAndPassword(auth,email,pass);await updateProfile(cred.user,{displayName:name});await setDoc(doc(db,'users',cred.user.uid),{name,email:email.toLowerCase(),role:email.toLowerCase()===OWNER_EMAIL.toLowerCase()?'owner':'applicant',createdAt:serverTimestamp()});status('تم إنشاء الحساب. لو أنت المالك، سجّل بالبريد المحدد في الإعدادات.','success')}catch(e){status(safeError(e),'error')}};
+ $('logoutBtn').onclick=()=>signOut(auth);
+ $('sendBtn').onclick=async()=>{const text=$('messageInput').value.trim();if(!text||!currentUser)return;try{await addDoc(collection(db,'messages'),{text,uid:currentUser.uid,name:currentProfile?.name||currentUser.displayName||'عضو',createdAt:serverTimestamp()});$('messageInput').value=''}catch(e){status(safeError(e),'error')}};
+ $('applyBtn').onclick=async()=>{try{const player=$('appPlayer').value.trim(),age=$('appAge').value.trim(),exp=$('appExp').value.trim(),why=$('appWhy').value.trim();if(!player||!age||!exp||!why)throw Error('من فضلك أكمل كل الخانات.');await addDoc(collection(db,'applications'),{uid:currentUser.uid,email:currentUser.email,player,age,exp,why,status:'pending',createdAt:serverTimestamp()});status('تم إرسال طلبك للإدارة.','success');$('myApplication').textContent='تم إرسال الطلب للمراجعة.'}catch(e){status(safeError(e),'error')}};
+ $('postAnnouncementBtn').onclick=async()=>{if(!owner())return;const text=$('announcementInput').value.trim();if(!text)return;try{await addDoc(collection(db,'announcements'),{text,by:currentUser.email,createdAt:serverTimestamp()});$('announcementInput').value='';status('تم نشر الإعلان.','success')}catch(e){status(safeError(e),'error')}};
+ onAuthStateChanged(auth,async user=>{currentUser=user;const logged=!!user;$('authArea').classList.toggle('hidden',logged);$('appArea').classList.toggle('hidden',!logged);$('logoutBtn').classList.toggle('hidden',!logged);if(!logged){$('who').textContent='';if(unsubMessages)unsubMessages();if(unsubStats)unsubStats();return}
+ try{const ref=doc(db,'users',user.uid),snap=await getDoc(ref);if(snap.exists())currentProfile=snap.data();else{currentProfile={name:user.displayName||user.email.split('@')[0],email:user.email,role:owner()?'owner':'applicant'};await setDoc(ref,{...currentProfile,createdAt:serverTimestamp()})}
+ $('who').textContent=(currentProfile.name||user.email)+' • '+(owner()?'مالك':currentProfile.role||'عضو');$('adminTab').classList.toggle('hidden',!owner());$('announceForm').classList.toggle('hidden',!owner());subscribeMessages();subscribeAnnouncements();loadMyApplication();if(owner())loadAdmin();loadStats();showTab('chat');status('أهلًا بيك، تم تسجيل الدخول.','success');
+ }catch(e){status('تعذر تحميل بيانات الحساب: '+safeError(e),'error')}
+ });
+ function subscribeMessages(){if(unsubMessages)unsubMessages();unsubMessages=onSnapshot(query(collection(db,'messages'),orderBy('createdAt','asc'),limit(100)),snap=>{$('messages').innerHTML='';snap.forEach(d=>{const m=d.data(),el=document.createElement('div');el.className='msg';el.innerHTML='<strong>'+esc(m.name||'عضو')+'</strong><time>'+esc(dateText(m.createdAt))+'</time><p>'+esc(m.text||'')+'</p>';$('messages').appendChild(el)});$('messages').scrollTop=$('messages').scrollHeight;$('statMsgs').textContent=snap.size},e=>status('مشكلة في قراءة الدردشة: '+safeError(e),'error'))}
+ function subscribeAnnouncements(){onSnapshot(query(collection(db,'announcements'),orderBy('createdAt','desc'),limit(30)),snap=>{$('announcementsList').innerHTML='';if(snap.empty){$('announcementsList').textContent='لا توجد إعلانات منشورة حاليًا.';return}snap.forEach(d=>{const a=d.data(),el=document.createElement('div');el.className='item';el.innerHTML='<div class="item-top"><span class="badge">إعلان إدارة</span><span class="muted small">'+esc(dateText(a.createdAt))+'</span></div><p style="white-space:pre-wrap">'+esc(a.text)+'</p>';$('announcementsList').appendChild(el)})},e=>status('تعذر تحميل الإعلانات: '+safeError(e),'error'))}
+ async function loadMyApplication(){try{const s=await getDocs(query(collection(db,'applications'),where('uid','==',currentUser.uid),limit(5)));$('myApplication').textContent=s.empty?'لم ترسل طلبًا بعد.':('حالة آخر طلب: '+(s.docs[s.docs.length-1].data().status==='pending'?'قيد المراجعة':s.docs[s.docs.length-1].data().status==='approved'?'مقبول':'مرفوض'))}catch{}}
+ async function loadStats(){try{const [u,a,m]=await Promise.all([getDocs(collection(db,'users')),getDocs(query(collection(db,'applications'),where('status','==','pending'))),getDocs(collection(db,'messages'))]);$('statMembers').textContent=u.size;$('statApps').textContent=a.size;$('statMsgs').textContent=m.size}catch{}}
+ async function loadAdmin(){try{
+ const apps=await getDocs(query(collection(db,'applications'),orderBy('createdAt','desc'),limit(100)));$('applicationsList').innerHTML='';if(apps.empty)$('applicationsList').textContent='لا توجد طلبات حاليًا.';
+ apps.forEach(s=>{const a=s.data(),el=document.createElement('div');el.className='item';el.innerHTML='<div class="item-top"><b>'+esc(a.player)+'</b><span class="badge">'+esc(a.status)+'</span></div><p class="muted">البريد: '+esc(a.email)+'<br>العمر/الإجابة: '+esc(a.age)+'<br>الخبرة: '+esc(a.exp)+'<br>السبب: '+esc(a.why)+'</p>';if(a.status==='pending'){const row=document.createElement('div');row.className='row';const yes=document.createElement('button');yes.className='green';yes.textContent='قبول';yes.onclick=()=>reviewApp(s.id,'approved',a.uid);const no=document.createElement('button');no.className='danger';no.textContent='رفض';no.onclick=()=>reviewApp(s.id,'rejected',a.uid);row.append(yes,no);el.appendChild(row)}$('applicationsList').appendChild(el)});
+ const users=await getDocs(query(collection(db,'users'),limit(150)));$('membersList').innerHTML='';users.forEach(s=>{const u=s.data(),el=document.createElement('div');el.className='item';const title=document.createElement('b');title.textContent=u.name||u.email;const sub=document.createElement('div');sub.className='muted';sub.textContent=u.email||'';const select=document.createElement('select');['applicant','member','moderator','admin','owner'].forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=({applicant:'متقدم',member:'عضو',moderator:'مشرف',admin:'إدارة',owner:'مالك'})[r];if(r===(u.role||'applicant'))o.selected=true;select.appendChild(o)});select.disabled=(s.id===currentUser.uid);const save=document.createElement('button');save.className='secondary';save.textContent='حفظ الرتبة';save.onclick=async()=>{if(!owner())return;if(select.value==='owner'&&u.email?.toLowerCase()!==OWNER_EMAIL.toLowerCase()){status('لا يمكن تعيين مالك آخر من هذه الواجهة.','error');return}try{await updateDoc(doc(db,'users',s.id),{role:select.value});status('تم تحديث الرتبة.','success');loadAdmin()}catch(e){status(safeError(e),'error')}};el.append(title,sub,select,save);$('membersList').appendChild(el)})
+ }catch(e){status('تعذر فتح لوحة المالك: '+safeError(e),'error')}}
+ async function reviewApp(id,state,uid){try{await updateDoc(doc(db,'applications',id),{status:state,reviewedAt:serverTimestamp(),reviewedBy:currentUser.email});if(state==='approved')await updateDoc(doc(db,'users',uid),{role:'member'});status(state==='approved'?'تم قبول الطلب.':'تم رفض الطلب.','success');loadAdmin();loadStats()}catch(e){status(safeError(e),'error')}}
+ }catch(e){status('خطأ في إعداد Firebase: '+safeError(e),'error')}
+}
+</script>
+</body></html>
